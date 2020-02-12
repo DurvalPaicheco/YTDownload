@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>YT Download</title>
 </head>
 <body>
-    
+    <h2>Download Videos e Playlist do Youtube</h2>
+    Insira a URL: <input type="text" id="text"/>
+     <button onclick="enviar()"  >Baixar</button>
+     <script>
+         function enviar(){
+            var texto = document.getElementById('text').value
+            fetch('http://localhost:8080/download',{
+                method: 'POST',
+                headers: { 'Content-Type': 'Application/json'},
+                body: JSON.stringify({url: texto})
+            })
+                .then(function(response){ return response.json() })
+                .then(function(response){
+                    window.location = 'http://localhost:8080/' + response.video
+                })
+       }  
+         
+     </script>
 </body>
 </html>

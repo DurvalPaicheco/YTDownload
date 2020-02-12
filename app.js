@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'videos')))
 
-app.get('/', (req, res ) => res.sendFile(path.join(__dirname, '/views/index.html')))
+app.get('/', (req, res ) => res.sendFile(path.join(__dirname, 'index.html')))
 
 
 
@@ -30,5 +30,5 @@ app.post('/download', async (req , res) =>{
     
 })
 
-const port = process.env.PORT || 4040
+const port = process.env.PORT || 8080
 app.listen(port)
