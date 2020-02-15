@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>Document</title>
+    
+</head>
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">YTDownload</label>
+        <ul>
+            <li><a class="active" href="#">Home</a></li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Home</a></li>
+        </ul>
+    </nav>
+    <h2>Download Videos e Playlist do Youtube</h2>
+    Insira a URL: <input type="text" id="text"/>
+     <button onclick="enviar()"> Baixar </button>
+
+     
+<script>
+    function enviar(){
+    var texto = document.getElementById('text').value
+    fetch('http://localhost:8080/download',{
+    method: 'POST',
+    headers: { 'Content-Type': 'Application/json'},
+    body: JSON.stringify({url: texto})
+})
+    .then(function(response){ return response.json() })
+    .then(function(response){
+        window.location = 'http://localhost:8080/' + response.video
+    })
+}  
+
+ </script>
+</body>
+</html>
+
